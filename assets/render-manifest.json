@@ -1,0 +1,123 @@
+{
+  "title": "RIFT RUNNER",
+  "levels": [
+    {
+      "name": "ION HIGHWAY",
+      "boss": "DREAD MANTA"
+    },
+    {
+      "name": "ASH CATHEDRAL",
+      "boss": "SOLAR CROWN"
+    },
+    {
+      "name": "CRYSTAL REACH",
+      "boss": "PRISM WYRM"
+    },
+    {
+      "name": "VOID THRONE",
+      "boss": "VOID COLOSSUS"
+    }
+  ],
+  "video": {
+    "width": 256,
+    "height": 80,
+    "frames": 648,
+    "palette_entries": 16,
+    "format": "indexed 4-bit palette values, row-major, one frame after another"
+  },
+  "segments": {
+    "sector0_loop": {
+      "start": 0,
+      "count": 33,
+      "repeat": "32 views and duplicate frame zero"
+    },
+    "boss0_entry": {
+      "start": 33,
+      "count": 32,
+      "name": "DREAD MANTA"
+    },
+    "boss0_loop": {
+      "start": 65,
+      "count": 65,
+      "repeat": "64 angles and duplicate frame zero",
+      "name": "DREAD MANTA"
+    },
+    "boss0_defeat": {
+      "start": 130,
+      "count": 32,
+      "name": "DREAD MANTA"
+    },
+    "sector1_loop": {
+      "start": 162,
+      "count": 33,
+      "repeat": "32 views and duplicate frame zero"
+    },
+    "boss1_entry": {
+      "start": 195,
+      "count": 32,
+      "name": "SOLAR CROWN"
+    },
+    "boss1_loop": {
+      "start": 227,
+      "count": 65,
+      "repeat": "64 angles and duplicate frame zero",
+      "name": "SOLAR CROWN"
+    },
+    "boss1_defeat": {
+      "start": 292,
+      "count": 32,
+      "name": "SOLAR CROWN"
+    },
+    "sector2_loop": {
+      "start": 324,
+      "count": 33,
+      "repeat": "32 views and duplicate frame zero"
+    },
+    "boss2_entry": {
+      "start": 357,
+      "count": 32,
+      "name": "PRISM WYRM"
+    },
+    "boss2_loop": {
+      "start": 389,
+      "count": 65,
+      "repeat": "64 angles and duplicate frame zero",
+      "name": "PRISM WYRM"
+    },
+    "boss2_defeat": {
+      "start": 454,
+      "count": 32,
+      "name": "PRISM WYRM"
+    },
+    "sector3_loop": {
+      "start": 486,
+      "count": 33,
+      "repeat": "32 views and duplicate frame zero"
+    },
+    "boss3_entry": {
+      "start": 519,
+      "count": 32,
+      "name": "VOID COLOSSUS"
+    },
+    "boss3_loop": {
+      "start": 551,
+      "count": 65,
+      "repeat": "64 angles and duplicate frame zero",
+      "name": "VOID COLOSSUS"
+    },
+    "boss3_defeat": {
+      "start": 616,
+      "count": 32,
+      "name": "VOID COLOSSUS"
+    }
+  },
+  "sprite_tiles": 57,
+  "prescaled_enemies": [
+    "MITE",
+    "VIPER",
+    "LANCER",
+    "BULWARK"
+  ],
+  "font_glyphs": 43,
+  "renderer": "host-side flat-shaded low-poly projection; VDP runs only the tile-delta decoder"
+}

@@ -1,0 +1,107 @@
+symbols RiftRunner.noi
+psglog shots/audio-test.log
+
+echo boot: title reel, display, palette
+run 120
+expectvdp display 1
+expect game_state == 0 w1
+expectcolors 6
+screenshot shots/00-title.ppm
+
+echo start and steer: button 1 starts, right moves the ship
+hold 1
+run 2
+hold none
+waituntil game_state == 1 20 w1
+expect weapon_level == 0 w1
+expect bombs == 1 w1
+hold right+1
+run 30
+hold none
+expect player_x > 128 w1
+expect game_state == 1 w1
+expect sfx_events > 0 w1
+screenshot shots/01-flight.ppm
+
+echo sector 1: gate, Manta FMV, and nova bomb
+poke level_timer 599 w2
+waituntil scene_state == 1 180 w1
+expect game_state == 1 w1
+waituntil scene_state == 2 150 w1
+expect boss_hp == 20 w1
+expectvdp display 1
+screenshot shots/02-boss-manta.ppm
+poke boss_hp 5 w1
+hold 2
+waituntil last_keys == 32 90 w2
+expect bombs == 0 w1
+hold none
+run 2
+expect boss_hp == 2 w1
+expect last_sfx == 5 w1
+poke player_x 128 w1
+poke player_y 164 w1
+poke boss_hp 1 w1
+hold 1
+waituntil boss_hp == 0 90 w1
+hold none
+expect score >= 250 w2
+waituntil cur_level == 1 500 w1
+expect scene_state == 0 w1
+waituntil pickup_collected == 1 100 w1
+expect weapon_level == 1 w1
+hold 1
+waituntil last_sfx == 2 40 w1
+hold none
+run 2
+screenshot shots/03-sector-two.ppm
+
+echo sector 2: Solar Crown and transition to Crystal Reach
+poke level_timer 599 w2
+waituntil scene_state == 1 180 w1
+waituntil scene_state == 2 150 w1
+expect boss_hp == 26 w1
+poke boss_hp 1 w1
+hold 1
+waituntil boss_hp == 0 90 w1
+hold none
+waituntil cur_level == 2 500 w1
+expect scene_state == 0 w1
+waituntil pickup_collected == 2 100 w1
+expect weapon_level == 2 w1
+hold 1
+waituntil last_sfx == 3 40 w1
+hold none
+run 2
+
+echo sector 3: Prism Wyrm and transition to Void Throne
+poke level_timer 599 w2
+waituntil scene_state == 1 180 w1
+waituntil scene_state == 2 150 w1
+expect boss_hp == 32 w1
+poke boss_hp 1 w1
+hold 1
+waituntil boss_hp == 0 90 w1
+hold none
+waituntil cur_level == 3 500 w1
+expect scene_state == 0 w1
+waituntil pickup_collected == 3 100 w1
+expect bombs == 1 w1
+
+echo sector 4: Void Colossus and campaign victory
+poke level_timer 599 w2
+waituntil scene_state == 1 180 w1
+waituntil scene_state == 2 150 w1
+expect boss_hp == 38 w1
+poke boss_hp 1 w1
+hold 1
+waituntil boss_hp == 0 90 w1
+hold none
+waituntil game_state == 3 500 w1
+expect cur_level == 3 w1
+expect scene_state == 4 w1
+expect game_state == 3 w1
+expect sfx_events > 0 w1
+psgstop
+expectcolors 6
+screenshot shots/04-victory.ppm
